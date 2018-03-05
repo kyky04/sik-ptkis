@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="uinbdg.skirpsi.futsal">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.LoginActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.DrawerActivity" />
+        <activity
+            android:name="uinbdg.skirpsi.futsal.Activities.GridMenuActivity"
+            android:label="@string/title_activity_grid_menu"
+            android:theme="@style/AppTheme" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.MainActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.DaftarActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.ResetPasswordActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.LapanganActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.BukuSakuActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.ProviderActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.ProviderResultActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.BenefitActivity" />
+
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.KlaimActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.KlaimDetailActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.KlaimRiwayatActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.KlaimKirimActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.KompetisiActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.BukuSakuDetailActivity"></activity>
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.BenefitManfaatActivity"></activity>
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.EditProfilActivity"></activity>
+
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.TimActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.MyTimActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.TimDetailActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.PemainActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.JadwalActivity" />
+        <activity android:name="uinbdg.skirpsi.futsal.Activities.MyTeamActivity" />
+    </application>
+
+</manifest>
