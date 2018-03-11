@@ -1,22 +1,37 @@
 package uinbdg.skirpsi.futsal.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import uinbdg.skirpsi.futsal.Model.AccessTokenRequest;
+import uinbdg.skirpsi.futsal.Model.AccessTokenResponse;
+import uinbdg.skirpsi.futsal.Model.UserResponse;
+import uinbdg.skirpsi.futsal.Service.ApiClient;
+import uinbdg.skirpsi.futsal.Service.FutsalApi;
+import uinbdg.skirpsi.futsal.Service.OauthClient;
 import uinbdg.skirpsi.futsal.Util.CommonUtil;
 import uinbdg.skirpsi.futsal.R;
+import uinbdg.skirpsi.futsal.Util.Session;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
@@ -36,12 +51,17 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.tv_reset_pass)
     TextView tvResetPass;
 
+    ProgressDialog progressDialog;
+
+    Session session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+        session = new Session(this);
 
     }
 
@@ -56,17 +76,7 @@ public class LoginActivity extends AppCompatActivity {
             case R.id.img_logo:
                 break;
             case R.id.btn_login:
-                CommonUtil.showProgress(LoginActivity.this, "Authenticating . . .");
-                new Handler().postDelayed(
-                        new Runnable() {
-                            public void run() {
-                                // On complete call either onLoginSuccess or onLoginFailed
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                finish();
-                                // onLoginFailed();
-                                CommonUtil.hideDialog();
-                            }
-                        }, 3000);
+               getAccessToken();
                 break;
             case R.id.tv_akun:
                 break;
@@ -79,5 +89,88 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public void getAccessToken() {
+        openDialog();
+//        CommonUtil.showProgress(LoginActivity.this, "Authenticating . . .");
+        AccessTokenRequest accessTokenRequest = new AccessTokenRequest();
+        accessTokenRequest.setClient_id(OauthClient.CLIENT_ID);
+        accessTokenRequest.setClient_secret(OauthClient.CLIENT_SECRET);
+        accessTokenRequest.setGrant_type(OauthClient.GRANT_TYPE);
+        accessTokenRequest.setUsername(etUsername.getText().toString());
+        accessTokenRequest.setPassword(etPassword.getText().toString());
+        accessTokenRequest.setScope("*");
 
+        Retrofit retrofit = ApiClient.newInstance();
+        FutsalApi service = retrofit.create(FutsalApi.class);
+
+
+        service.getAccessToken(accessTokenRequest).enqueue(new Callback<AccessTokenResponse>() {
+            @Override
+            public void onResponse(Call<AccessTokenResponse> call, Response<AccessTokenResponse> response) {
+                closeDialog();
+                if (response.code() == 200) {
+                    session.setKeyApiKey(response.body().getAccess_token());
+                    getUser();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Email atau Password tidak sesuai", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<AccessTokenResponse> call, Throwable t) {
+                closeDialog();
+                Toast.makeText(getApplicationContext(), "Gagal menyambungkan", Toast.LENGTH_LONG).show();
+
+            }
+
+        });
+    }
+
+    public void getUser() {
+        openDialog();
+        Retrofit retrofit = ApiClient.newInstance();
+        final FutsalApi service = retrofit.create(FutsalApi.class);
+        service.getUser("Bearer " + session.getAccessToken()).enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                Log.d("RESPONSE", String.valueOf(response.code()));
+                closeDialog();
+
+                if (response.code() == 200) {
+                    session.createLoginSession(response.body().getName(),response.body().getEmail(),response.body().getId());
+                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                    // Closing all the Activities
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                    // Add new Flag to start new Aktifitas
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    // Staring Login Aktifitas
+                    startActivity(i);
+                } else {
+//                    CommonUtil.showSnackMessage(container, "Terjadi kesalahan ketika login", Snackbar.LENGTH_LONG);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                closeDialog();
+                Log.d("ResponseCode", String.valueOf(t.getMessage()));
+                Toast.makeText(getApplicationContext(), "Error Connection", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void openDialog() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Menyambungkan . . .");
+        progressDialog.show();
+    }
+
+    private void closeDialog() {
+        progressDialog.dismiss();
+    }
 }

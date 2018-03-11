@@ -69,7 +69,7 @@ public class MyTeamActivity extends AppCompatActivity {
 
     int id_user;
     List<String> dataItemLapangansString;
-    List<DataItem> dataItemLapangans;
+    List<DataItemLapangan> dataItemLapangans;
 
     DataItemTeam teamPost;
     @BindView(R.id.btn_pemain)

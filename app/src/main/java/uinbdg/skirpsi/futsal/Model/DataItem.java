@@ -1,19 +1,19 @@
 package uinbdg.skirpsi.futsal.Model;
 
-import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+
 public class DataItem{
 
-	@SerializedName("nama")
-	private String nama;
+	@SerializedName("team_home")
+	private TeamHome teamHome;
 
 	@SerializedName("updated_at")
 	private String updatedAt;
 
-	@SerializedName("latitude")
-	private int latitude;
+	@SerializedName("id_team_home")
+	private int idTeamHome;
 
 	@SerializedName("created_at")
 	private String createdAt;
@@ -21,21 +21,24 @@ public class DataItem{
 	@SerializedName("id")
 	private int id;
 
-	@SerializedName("team")
-	private List<TeamItem> team;
+	@SerializedName("id_team_away")
+	private int idTeamAway;
 
 	@SerializedName("deleted_at")
 	private Object deletedAt;
 
-	@SerializedName("longitude")
-	private int longitude;
+	@SerializedName("team_away")
+	private TeamAway teamAway;
 
-	public void setNama(String nama){
-		this.nama = nama;
+	@SerializedName("status")
+	private String status;
+
+	public void setTeamHome(TeamHome teamHome){
+		this.teamHome = teamHome;
 	}
 
-	public String getNama(){
-		return nama;
+	public TeamHome getTeamHome(){
+		return teamHome;
 	}
 
 	public void setUpdatedAt(String updatedAt){
@@ -46,12 +49,12 @@ public class DataItem{
 		return updatedAt;
 	}
 
-	public void setLatitude(int latitude){
-		this.latitude = latitude;
+	public void setIdTeamHome(int idTeamHome){
+		this.idTeamHome = idTeamHome;
 	}
 
-	public int getLatitude(){
-		return latitude;
+	public int getIdTeamHome(){
+		return idTeamHome;
 	}
 
 	public void setCreatedAt(String createdAt){
@@ -70,12 +73,12 @@ public class DataItem{
 		return id;
 	}
 
-	public void setTeam(List<TeamItem> team){
-		this.team = team;
+	public void setIdTeamAway(int idTeamAway){
+		this.idTeamAway = idTeamAway;
 	}
 
-	public List<TeamItem> getTeam(){
-		return team;
+	public int getIdTeamAway(){
+		return idTeamAway;
 	}
 
 	public void setDeletedAt(Object deletedAt){
@@ -86,26 +89,35 @@ public class DataItem{
 		return deletedAt;
 	}
 
-	public void setLongitude(int longitude){
-		this.longitude = longitude;
+	public void setTeamAway(TeamAway teamAway){
+		this.teamAway = teamAway;
 	}
 
-	public int getLongitude(){
-		return longitude;
+	public TeamAway getTeamAway(){
+		return teamAway;
+	}
+
+	public void setStatus(String status){
+		this.status = status;
+	}
+
+	public String getStatus(){
+		return status;
 	}
 
 	@Override
  	public String toString(){
 		return 
 			"DataItem{" + 
-			"nama = '" + nama + '\'' + 
+			"team_home = '" + teamHome + '\'' + 
 			",updated_at = '" + updatedAt + '\'' + 
-			",latitude = '" + latitude + '\'' + 
+			",id_team_home = '" + idTeamHome + '\'' + 
 			",created_at = '" + createdAt + '\'' + 
 			",id = '" + id + '\'' + 
-			",team = '" + team + '\'' + 
+			",id_team_away = '" + idTeamAway + '\'' + 
 			",deleted_at = '" + deletedAt + '\'' + 
-			",longitude = '" + longitude + '\'' + 
+			",team_away = '" + teamAway + '\'' + 
+			",status = '" + status + '\'' + 
 			"}";
 		}
 }

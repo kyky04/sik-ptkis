@@ -1,14 +1,13 @@
 package uinbdg.skirpsi.futsal.Model;
 
 import java.util.List;
-
 import com.google.gson.annotations.SerializedName;
 
 
-public class LapanganResponse{
+public class PertandinganResponse{
 
 	@SerializedName("data")
-	private List<DataItemLapangan> data;
+	private List<DataItem> data;
 
 	@SerializedName("success")
 	private boolean success;
@@ -16,11 +15,11 @@ public class LapanganResponse{
 	@SerializedName("message")
 	private String message;
 
-	public void setData(List<DataItemLapangan> data){
+	public void setData(List<DataItem> data){
 		this.data = data;
 	}
 
-	public List<DataItemLapangan> getData(){
+	public List<DataItem> getData(){
 		return data;
 	}
 
@@ -43,7 +42,7 @@ public class LapanganResponse{
 	@Override
  	public String toString(){
 		return 
-			"LapanganResponse{" + 
+			"PertandinganResponse{" + 
 			"data = '" + data + '\'' + 
 			",success = '" + success + '\'' + 
 			",message = '" + message + '\'' + 

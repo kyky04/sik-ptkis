@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import uinbdg.skirpsi.futsal.Adapter.AdapterKompetisi;
 import uinbdg.skirpsi.futsal.Adapter.AdapterLapangan;
 import uinbdg.skirpsi.futsal.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -34,7 +35,7 @@ public class KompetisiActivity extends AppCompatActivity {
 
     private void initView() {
     recyclerViewKompetisi.setLayoutManager(new LinearLayoutManager(this));
-    recyclerViewKompetisi.setAdapter(new AdapterLapangan(this));
+    recyclerViewKompetisi.setAdapter(new AdapterKompetisi(this));
     recyclerViewKompetisi.setHasFixedSize(true);
     }
 

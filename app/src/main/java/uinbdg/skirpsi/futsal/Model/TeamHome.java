@@ -3,7 +3,8 @@ package uinbdg.skirpsi.futsal.Model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class DataItemLapangan {
+
+public class TeamHome{
 
 	@SerializedName("nama")
 	private String nama;
@@ -11,34 +12,20 @@ public class DataItemLapangan {
 	@SerializedName("updated_at")
 	private String updatedAt;
 
-	@SerializedName("latitude")
-	private double latitude;
-
 	@SerializedName("created_at")
 	private String createdAt;
 
 	@SerializedName("id")
 	private int id;
 
+	@SerializedName("id_user")
+	private int idUser;
+
 	@SerializedName("deleted_at")
 	private Object deletedAt;
 
-	@SerializedName("longitude")
-	private double longitude;
-
-	private  float distance;
-
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
-	}
-
-	public float getDistance() {
-		return distance;
-	}
-
-	public void setDistance(float distance) {
-		this.distance = distance;
-	}
+	@SerializedName("id_lapang")
+	private int idLapang;
 
 	public void setNama(String nama){
 		this.nama = nama;
@@ -54,14 +41,6 @@ public class DataItemLapangan {
 
 	public String getUpdatedAt(){
 		return updatedAt;
-	}
-
-	public void setLatitude(int latitude){
-		this.latitude = latitude;
-	}
-
-	public double getLatitude(){
-		return latitude;
 	}
 
 	public void setCreatedAt(String createdAt){
@@ -80,6 +59,14 @@ public class DataItemLapangan {
 		return id;
 	}
 
+	public void setIdUser(int idUser){
+		this.idUser = idUser;
+	}
+
+	public int getIdUser(){
+		return idUser;
+	}
+
 	public void setDeletedAt(Object deletedAt){
 		this.deletedAt = deletedAt;
 	}
@@ -88,25 +75,25 @@ public class DataItemLapangan {
 		return deletedAt;
 	}
 
-	public void setLongitude(double longitude){
-		this.longitude = longitude;
+	public void setIdLapang(int idLapang){
+		this.idLapang = idLapang;
 	}
 
-	public double getLongitude(){
-		return longitude;
+	public int getIdLapang(){
+		return idLapang;
 	}
 
 	@Override
  	public String toString(){
 		return 
-			"DataItemJadwal{" +
+			"TeamHome{" + 
 			"nama = '" + nama + '\'' + 
 			",updated_at = '" + updatedAt + '\'' + 
-			",latitude = '" + latitude + '\'' + 
 			",created_at = '" + createdAt + '\'' + 
 			",id = '" + id + '\'' + 
+			",id_user = '" + idUser + '\'' + 
 			",deleted_at = '" + deletedAt + '\'' + 
-			",longitude = '" + longitude + '\'' + 
+			",id_lapang = '" + idLapang + '\'' + 
 			"}";
 		}
 }

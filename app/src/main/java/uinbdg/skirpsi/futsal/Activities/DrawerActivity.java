@@ -72,7 +72,7 @@ public class DrawerActivity extends AppCompatActivity {
                             if (drawerItem.getIdentifier() == 1) {
                                 CommonUtil.displayFragment(DrawerActivity.this,R.id._container, SampleFragment.newInstance("Home","Desc"),"TAG");
                             }else if (drawerItem.getIdentifier() == 2) {
-                                startActivity(new Intent(DrawerActivity.this,GridMenuActivity.class));
+//                                startActivity(new Intent(DrawerActivity.this,GridMenuActivity.class));
                             }else if (drawerItem.getIdentifier() == 2) {
                                 CommonUtil.displayFragment(DrawerActivity.this,R.id._container, SampleFragment.newInstance("Menu 2","Desc"),"TAG");
                             }else if (drawerItem.getIdentifier() == 21) {

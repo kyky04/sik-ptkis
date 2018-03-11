@@ -56,7 +56,7 @@ public class Session {
     /**
      * Create login session
      * */
-    public void createLoginSession(String userName, String email, String access_token,String credential,String nip,Integer id){
+    public void createLoginSession(String userName, String email,Integer id){
 
         editor.putBoolean(IS_LOGIN, true);
 
@@ -64,9 +64,7 @@ public class Session {
 
         editor.putString(KEY_EMAIL, email);
 
-        editor.putString(KEY_ACCESS_TOKEN, access_token);
 
-        editor.putString(KEY_CREDENTIAL, credential);
         editor.putInt(KEY_ID,id);
 
         // commit changes
@@ -201,5 +199,7 @@ public class Session {
         editor.putString(KEY_CREDENTIAL, v);
         editor.commit();
     }
+
+
 
 }

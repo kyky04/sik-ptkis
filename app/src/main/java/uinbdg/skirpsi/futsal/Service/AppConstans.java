@@ -11,7 +11,7 @@ public class AppConstans {
     public static final String REFRESH_TOKEN = "refresh_token";
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
-    public static final String AUTHENTICATION_SERVER_URL = "http://192.168.1.17/futsal/public/api/";
+    public static final String AUTHENTICATION_SERVER_URL = "http://192.168.1.18/futsal/public/";
     public static final String RESOURCE_SERVER_URL = "resource_server_url";
     public static final String GRANT_TYPE = "grant_type";
     public static final String SCOPE = "scope";
@@ -26,12 +26,9 @@ public class AppConstans {
     public static final int HTTP_OK = 200;
     public static final int HTTP_FORBIDDEN = 403;
     public static final int HTTP_UNAUTHORIZED = 401;
-
-
     public static final String ID_TEAM = "id_team";
     public static final String ID_LAPANG = "id_lapang";
     public static final String ID_JADWAL = "id_jadwal";
     public static final String ID_PEMAIN = "id_pemain";
-
 
 }

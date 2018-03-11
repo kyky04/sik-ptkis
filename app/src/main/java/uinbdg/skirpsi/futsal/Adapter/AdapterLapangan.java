@@ -1,11 +1,14 @@
 package uinbdg.skirpsi.futsal.Adapter;
 
 import android.content.Context;
+import android.location.Location;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -15,6 +18,7 @@ import butterknife.ButterKnife;
 import uinbdg.skirpsi.futsal.Model.DataItem;
 import uinbdg.skirpsi.futsal.Model.DataItemLapangan;
 import uinbdg.skirpsi.futsal.R;
+import uinbdg.skirpsi.futsal.Util.GPSTracker;
 
 /**
  * Created by Comp on 2/11/2018.
@@ -22,7 +26,10 @@ import uinbdg.skirpsi.futsal.R;
 
 public class AdapterLapangan extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    List<DataItem> lapanganList;
+    List<DataItemLapangan> lapanganList;
+    GPSTracker gpsTracker;
+
+
 
     private OnLoadMoreListener onLoadMoreListener;
 
@@ -30,7 +37,7 @@ public class AdapterLapangan extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private OnItemClickListener mOnItemClickListener;
 
     public interface OnItemClickListener {
-        void onItemClick(View view, String obj, int position);
+        void onItemClick(int position);
     }
 
     public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
@@ -41,9 +48,10 @@ public class AdapterLapangan extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.ctx = ctx;
     }
 
-    public AdapterLapangan(Context ctx, List<DataItem> lapanganResponses) {
+    public AdapterLapangan(Context ctx, List<DataItemLapangan> lapanganResponses) {
         this.lapanganList = lapanganResponses;
         this.ctx = ctx;
+        gpsTracker = new GPSTracker(ctx);
     }
 
     public class OriginalViewHolder extends RecyclerView.ViewHolder {
@@ -53,6 +61,11 @@ public class AdapterLapangan extends RecyclerView.Adapter<RecyclerView.ViewHolde
         EditText etAlamat;
         @BindView(R.id.et_phone)
         EditText etPhone;
+        @BindView(R.id.view_item)
+        LinearLayout viewItem;
+        @BindView(R.id.et_distance)
+        EditText etDistance;
+
         public OriginalViewHolder(View v) {
             super(v);
             ButterKnife.bind(this, v);
@@ -65,16 +78,31 @@ public class AdapterLapangan extends RecyclerView.Adapter<RecyclerView.ViewHolde
         RecyclerView.ViewHolder vh;
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lapangan, parent, false);
         vh = new OriginalViewHolder(v);
+
+
         return vh;
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-        DataItem lapang = lapanganList.get(position);
+        Log.d("LAPANGAN", lapanganList.get(position).getNama());
+        DataItemLapangan lapang = lapanganList.get(position);
         if (holder instanceof OriginalViewHolder) {
             ((OriginalViewHolder) holder).tvNamaLapang.setText(lapang.getNama());
+//            ((OriginalViewHolder) holder).etAlamat.setText(lapang.x());
+
+            String distance = String.valueOf(getDistance(gpsTracker.getLatitude(), gpsTracker.getLongitude(), lapanganList.get(position).getLatitude(), lapanganList.get(position).getLongitude()) / 1000) + " Km";
+//            Integer jarak = Integer.valueOf(distance);
+            ((OriginalViewHolder) holder).etDistance.setText(String.valueOf(distance));
         }
+
+        ((OriginalViewHolder) holder).viewItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mOnItemClickListener.onItemClick(position);
+            }
+        });
     }
 
     @Override
@@ -82,6 +110,11 @@ public class AdapterLapangan extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return lapanganList.size();
     }
 
+    public static float getDistance(double startLati, double startLongi, double goalLati, double goalLongi) {
+        float[] resultArray = new float[99];
+        Location.distanceBetween(startLati, startLongi, goalLati, goalLongi, resultArray);
+        return resultArray[0];
+    }
     public void setOnLoadMoreListener(OnLoadMoreListener onLoadMoreListener) {
         this.onLoadMoreListener = onLoadMoreListener;
     }
