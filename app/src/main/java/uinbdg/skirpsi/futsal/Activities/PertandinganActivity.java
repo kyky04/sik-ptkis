@@ -18,21 +18,25 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import uinbdg.skirpsi.futsal.Adapter.AdapterPertandingan;
 import uinbdg.skirpsi.futsal.Adapter.AdapterTim;
+import uinbdg.skirpsi.futsal.Model.DataItem;
 import uinbdg.skirpsi.futsal.Model.DataItemTeam;
+import uinbdg.skirpsi.futsal.Model.PertandinganResponse;
 import uinbdg.skirpsi.futsal.Model.TeamResponse;
 import uinbdg.skirpsi.futsal.R;
 import uinbdg.skirpsi.futsal.Service.ApiClient;
 import uinbdg.skirpsi.futsal.Service.AppConstans;
 import uinbdg.skirpsi.futsal.Service.FutsalApi;
+import uinbdg.skirpsi.futsal.Util.Session;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class PertandinganActivity extends AppCompatActivity {
 
 
-    List<DataItemTeam> dataItemTeamList;
+    List<DataItem> dataItemTeamList;
 
-    AdapterTim adapterPeserta;
+    AdapterPertandingan adapterPeserta;
 
     Retrofit retrofit;
     FutsalApi futsalApi;
@@ -40,6 +44,7 @@ public class PertandinganActivity extends AppCompatActivity {
     Toolbar toolbar;
     @BindView(R.id.recycler_view_tim)
     RecyclerView recyclerViewTim;
+    Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +53,7 @@ public class PertandinganActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        session = new Session(this);
         initView();
         getTim();
     }
@@ -79,29 +84,27 @@ public class PertandinganActivity extends AppCompatActivity {
     }
 
     void getTim() {
-        futsalApi.getTeam().enqueue(new Callback<TeamResponse>() {
+        futsalApi.getPertandingan(session.getID()).enqueue(new Callback<PertandinganResponse>() {
             @Override
-            public void onResponse(Call<TeamResponse> call, Response<TeamResponse> response) {
+            public void onResponse(Call<PertandinganResponse> call, Response<PertandinganResponse> response) {
                 if (response.code() == AppConstans.HTTP_OK) {
                     for (int i = 0; i < response.body().getData().size(); i++) {
                         dataItemTeamList.add(response.body().getData().get(i));
                     }
-                    adapterPeserta = new AdapterTim(PertandinganActivity.this, dataItemTeamList);
+                    adapterPeserta = new AdapterPertandingan(PertandinganActivity.this, dataItemTeamList);
                     recyclerViewTim.setAdapter(adapterPeserta);
                     recyclerViewTim.setHasFixedSize(true);
-                    adapterPeserta.setOnItemClickListener(new AdapterTim.OnItemClickListener() {
+                    adapterPeserta.setOnItemClickListener(new AdapterPertandingan.OnItemClickListener() {
                         @Override
                         public void onItemClick(int position) {
-                            Intent i = new Intent(PertandinganActivity.this, TimDetailActivity.class);
-                            i.putExtra(AppConstans.ID_TEAM, dataItemTeamList.get(position).getId());
-                            startActivity(i);
+
                         }
                     });
                 }
             }
 
             @Override
-            public void onFailure(Call<TeamResponse> call, Throwable t) {
+            public void onFailure(Call<PertandinganResponse> call, Throwable t) {
 
             }
         });

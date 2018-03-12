@@ -27,7 +27,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.et_date)
+    @BindView(R.id.et_manager)
     EditText etDate;
     @BindView(R.id.btn_proses)
     Button btnProses;
@@ -59,10 +59,10 @@ public class ResetPasswordActivity extends AppCompatActivity {
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
     }
 
-    @OnClick({R.id.et_date, R.id.btn_proses})
+    @OnClick({R.id.et_manager, R.id.btn_proses})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.et_date:
+            case R.id.et_manager:
                 datePicker.show();
                 break;
             case R.id.btn_proses:

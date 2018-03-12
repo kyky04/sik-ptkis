@@ -27,6 +27,28 @@ public class TeamAway{
 	@SerializedName("id_lapang")
 	private int idLapang;
 
+	@SerializedName("lapang")
+	private Lapang lapang;
+
+	@SerializedName("jadwal")
+	private DataItemJadwal jadwal;
+
+	public DataItemJadwal getJadwal() {
+		return jadwal;
+	}
+
+	public void setJadwal(DataItemJadwal jadwal) {
+		this.jadwal = jadwal;
+	}
+
+	public Lapang getLapang() {
+		return lapang;
+	}
+
+	public void setLapang(Lapang lapang) {
+		this.lapang = lapang;
+	}
+
 	public void setNama(String nama){
 		this.nama = nama;
 	}

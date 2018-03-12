@@ -17,6 +17,7 @@ import butterknife.OnClick;
 
 import uinbdg.skirpsi.futsal.Util.CommonUtil;
 import uinbdg.skirpsi.futsal.R;
+import uinbdg.skirpsi.futsal.Util.Session;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+        session = new Session(this);
     }
 
     @OnClick({R.id.btn_tim, R.id.btn_jadwal, R.id.btn_lapangan, R.id.btn_myteam, R.id.btn_kompetisi, R.id.btn_tentang})
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, KompetisiActivity.class));
                 break;
             case R.id.btn_tentang:
-                startActivity(new Intent(this, LapanganActivity.class));
+                startActivity(new Intent(this, PertandinganActivity.class));
                 break;
 
         }
@@ -93,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_logout:
-                uinbdg.skirpsi.futsal.Util.CommonUtil.logout(this);
+                session.logoutUser();
                 break;
             case R.id.menu_exit:
                 CommonUtil.exit(this);

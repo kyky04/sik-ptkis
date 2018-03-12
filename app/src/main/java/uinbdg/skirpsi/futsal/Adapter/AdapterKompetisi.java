@@ -5,8 +5,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import java.util.List;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import uinbdg.skirpsi.futsal.Model.DataItemKompetisi;
 import uinbdg.skirpsi.futsal.R;
 
 /**
@@ -15,6 +21,13 @@ import uinbdg.skirpsi.futsal.R;
 
 public class AdapterKompetisi extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    List<DataItemKompetisi> itemKompetisis;
+
+
+    public AdapterKompetisi(Context ctx, List<DataItemKompetisi> itemKompetisis) {
+        this.itemKompetisis = itemKompetisis;
+        this.ctx = ctx;
+    }
 
     private OnLoadMoreListener onLoadMoreListener;
 
@@ -34,8 +47,12 @@ public class AdapterKompetisi extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public class OriginalViewHolder extends RecyclerView.ViewHolder {
-
-
+        @BindView(R.id.tv_nama_kompetisi)
+        TextView tvNamaKompetisi;
+        @BindView(R.id.et_waktu)
+        EditText etWaktu;
+        @BindView(R.id.et_keterangan)
+        EditText etKeterangan;
         public OriginalViewHolder(View v) {
             super(v);
             ButterKnife.bind(this, v);
@@ -56,14 +73,16 @@ public class AdapterKompetisi extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
 
         if (holder instanceof OriginalViewHolder) {
-
+        ((OriginalViewHolder) holder).tvNamaKompetisi.setText(itemKompetisis.get(position).getNama());
+        ((OriginalViewHolder) holder).etWaktu.setText(itemKompetisis.get(position).getWaktu());
+        ((OriginalViewHolder) holder).etKeterangan.setText(itemKompetisis.get(position).getKeterangan());
 
         }
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return itemKompetisis.size();
     }
 
     public void setOnLoadMoreListener(OnLoadMoreListener onLoadMoreListener) {

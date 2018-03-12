@@ -106,7 +106,7 @@
                     android:tint="@color/grey_500" />
 
                 <EditText
-                    android:id="@+id/et_date"
+                    android:id="@+id/et_manager"
                     fontPath="fonts/montserrat_medium.ttf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -120,9 +120,7 @@
                      />
 
 
-            </LinearLayout>
-
-            <LinearLayout
+            </LinearLayout> <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_medium"
@@ -135,53 +133,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/spacing_medium"
-                    android:src="@drawable/ic_email"
+                    android:src="@drawable/ic_place_black_24dp"
                     android:tint="@color/grey_500" />
 
                 <EditText
-                    android:id="@+id/et_email"
+                    android:id="@+id/et_lapang"
                     fontPath="fonts/montserrat_medium.ttf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
-                    android:hint="Email"
-                    android:padding="@dimen/spacing_medium"
-                    />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_medium"
-                android:background="@color/overlay_light_30"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/spacing_medium">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/spacing_medium"
-                    android:src="@drawable/ic_phone_black_24dp"
-                    android:tint="@color/grey_500" />
-
-                <EditText
-                    android:id="@+id/et_phone"
-                    fontPath="fonts/montserrat_medium.ttf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:hint="No Handphone"
-                    android:inputType="number"
+                    android:clickable="true"
+                    android:editable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Lapang"
                     android:padding="@dimen/spacing_medium"
                      />
 
 
             </LinearLayout>
+
+
 
             <TextView
                 android:padding="@dimen/spacing_small"

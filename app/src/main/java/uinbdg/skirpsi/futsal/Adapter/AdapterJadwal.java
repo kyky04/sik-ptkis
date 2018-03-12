@@ -79,12 +79,12 @@ public class AdapterJadwal extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             view.tvNamaTim.setText(dataItemTeamList.get(position).getHari());
             view.tvWaktu.setText(dataItemTeamList.get(position).getWaktu());
             view.tvBaseHome.setText(dataItemTeamList.get(position).getTeam().getLapang().getNama());
-            view.lay.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mOnItemClickListener.onItemClick(position);
-                }
-            });
+//            view.lay.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    mOnItemClickListener.onItemClick(position);
+//                }
+//            });
         }
     }
 

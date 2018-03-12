@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +27,13 @@ import uinbdg.skirpsi.futsal.Adapter.AdapterTim;
 import uinbdg.skirpsi.futsal.Model.DataItem;
 import uinbdg.skirpsi.futsal.Model.DataItemTeam;
 import uinbdg.skirpsi.futsal.Model.Team;
+import uinbdg.skirpsi.futsal.Model.TeamDetailResponse;
 import uinbdg.skirpsi.futsal.Model.TeamResponse;
 import uinbdg.skirpsi.futsal.R;
 import uinbdg.skirpsi.futsal.Service.ApiClient;
 import uinbdg.skirpsi.futsal.Service.AppConstans;
 import uinbdg.skirpsi.futsal.Service.FutsalApi;
+import uinbdg.skirpsi.futsal.Util.Session;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class TimByLapangActivity extends AppCompatActivity {
@@ -51,7 +54,8 @@ public class TimByLapangActivity extends AppCompatActivity {
     Retrofit retrofit;
     FutsalApi futsalApi;
 
-    int id_lapang;
+    int id_lapang, id_team;
+    Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +64,11 @@ public class TimByLapangActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        session = new Session(this);
 
         id_lapang = getIntent().getIntExtra("id_lapang", 0);
         initView();
+        getMytim();
         getTim();
     }
 
@@ -118,15 +123,35 @@ public class TimByLapangActivity extends AppCompatActivity {
         });
     }
 
-    void ajakTanding(DataItemTeam team ){
+
+    void getMytim() {
+        futsalApi.getMyTim(session.getID()).enqueue(new Callback<TeamDetailResponse>() {
+            @Override
+            public void onResponse(Call<TeamDetailResponse> call, Response<TeamDetailResponse> response) {
+                if (response.code() == AppConstans.HTTP_OK) {
+                    id_team = response.body().getData().getId();
+                } else if (response.code() == 404) {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TeamDetailResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    void ajakTanding(final DataItemTeam team) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Ajak tanding ?");
-        String message = team.getNama()+"\n"+team.getLapang().getNama();
+        String message = team.getNama() + "\n" + team.getLapang().getNama();
         builder.setMessage(message);
         builder.setPositiveButton("YA", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                postTanding(team);
+                finish();
             }
         }).setNegativeButton("KEMBALI", new DialogInterface.OnClickListener() {
             @Override
@@ -137,5 +162,25 @@ public class TimByLapangActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    void postTanding(DataItemTeam team) {
+        DataItem pertandingan = new DataItem();
+        pertandingan.setIdTeamHome(id_team);
+        pertandingan.setIdTeamAway(team.getId());
+        pertandingan.setStatus("Pending");
+        futsalApi.postPertandingan(pertandingan).enqueue(new Callback<DataItem>() {
+            @Override
+            public void onResponse(Call<DataItem> call, Response<DataItem> response) {
+                if (response.code() == 200) {
+                    Toast.makeText(TimByLapangActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataItem> call, Throwable t) {
+
+            }
+        });
     }
 }

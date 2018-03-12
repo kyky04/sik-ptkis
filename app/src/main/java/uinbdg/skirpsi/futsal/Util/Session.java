@@ -191,7 +191,7 @@ public class Session {
         editor.commit();
     }
 
-    public String getPassword() {
+    public String getPasswxord() {
         return pref.getString(KEY_PASSWORD, "");
     }
 

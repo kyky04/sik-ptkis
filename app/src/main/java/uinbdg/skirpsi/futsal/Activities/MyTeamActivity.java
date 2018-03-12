@@ -29,7 +29,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import uinbdg.skirpsi.futsal.Adapter.AdapterSpinnerString;
-import uinbdg.skirpsi.futsal.Model.DataItem;
 import uinbdg.skirpsi.futsal.Model.DataItemLapangan;
 import uinbdg.skirpsi.futsal.Model.DataItemTeam;
 import uinbdg.skirpsi.futsal.Model.LapanganResponse;
@@ -38,6 +37,7 @@ import uinbdg.skirpsi.futsal.R;
 import uinbdg.skirpsi.futsal.Service.ApiClient;
 import uinbdg.skirpsi.futsal.Service.AppConstans;
 import uinbdg.skirpsi.futsal.Service.FutsalApi;
+import uinbdg.skirpsi.futsal.Util.Session;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MyTeamActivity extends AppCompatActivity {
@@ -52,12 +52,9 @@ public class MyTeamActivity extends AppCompatActivity {
     TextView etTitle;
     @BindView(R.id.et_nama_tim)
     EditText etNamaTim;
-    @BindView(R.id.et_date)
-    EditText etDate;
-    @BindView(R.id.et_email)
-    EditText etEmail;
-    @BindView(R.id.et_phone)
-    EditText etPhone;
+    @BindView(R.id.et_manager)
+    EditText etManager;
+
     @BindView(R.id.sp_lapangan)
     Spinner spLapangan;
     @BindView(R.id.btn_daftar)
@@ -78,6 +75,9 @@ public class MyTeamActivity extends AppCompatActivity {
     Button btnJadwal;
 
     boolean timAda;
+    Session session;
+    @BindView(R.id.et_lapang)
+    EditText etLapang;
 
 
     @Override
@@ -87,6 +87,7 @@ public class MyTeamActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initView();
 
+        session = new Session(this);
 
         getTim();
         getLapang();
@@ -95,7 +96,6 @@ public class MyTeamActivity extends AppCompatActivity {
     private void initView() {
         retrofit = ApiClient.newInstance();
         futsalApi = retrofit.create(FutsalApi.class);
-        id_user = 1;
         dataItemLapangansString = new ArrayList<>();
         dataItemLapangans = new ArrayList<>();
         team = new DataItemTeam();
@@ -119,13 +119,16 @@ public class MyTeamActivity extends AppCompatActivity {
         });
         Dialog dialog = builder.create();
         dialog.show();
-    }   private void editTeam() {
+    }
+
+    private void editTeam() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Anda Yakin edit Tim ini ?");
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                postTim();
+//                postTim();
+                dialogInterface.dismiss();
             }
         });
         Dialog dialog = builder.create();
@@ -133,29 +136,29 @@ public class MyTeamActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.btn_back_to_login, R.id.btn_daftar,R.id.btn_pemain, R.id.btn_jadwal})
+    @OnClick({R.id.btn_back_to_login, R.id.btn_daftar, R.id.btn_pemain, R.id.btn_jadwal})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_back_to_login:
                 supportFinishAfterTransition();
                 break;
             case R.id.btn_daftar:
-                if(timAda){
+                if (timAda) {
                     Log.d("POSITION", "" + dataItemLapangans.get(spLapangan.getSelectedItemPosition()).getId());
                     dialogCreateTeam();
-                }else {
+                } else {
                     editTeam();
                 }
                 break;
             case R.id.btn_pemain:
-                Intent i = new Intent(MyTeamActivity.this,PemainActivity.class);
-                i.putExtra(AppConstans.ID_TEAM,team.getId());
-                i.putExtra("fromMyTeam",true);
+                Intent i = new Intent(MyTeamActivity.this, PemainActivity.class);
+                i.putExtra(AppConstans.ID_TEAM, team.getId());
+                i.putExtra("fromMyTeam", true);
                 startActivity(i);
                 break;
             case R.id.btn_jadwal:
-                Intent ii = new Intent(MyTeamActivity.this,JadwalActivity.class);
-                ii.putExtra(AppConstans.ID_TEAM,team.getId());
+                Intent ii = new Intent(MyTeamActivity.this, JadwalActivity.class);
+                ii.putExtra(AppConstans.ID_TEAM, team.getId());
                 startActivity(ii);
                 break;
         }
@@ -163,24 +166,35 @@ public class MyTeamActivity extends AppCompatActivity {
 
 
     void getTim() {
-        futsalApi.getMyTim(id_user).enqueue(new Callback<TeamDetailResponse>() {
+        futsalApi.getMyTim(session.getID()).enqueue(new Callback<TeamDetailResponse>() {
             @Override
             public void onResponse(Call<TeamDetailResponse> call, Response<TeamDetailResponse> response) {
                 if (response.code() == AppConstans.HTTP_OK) {
                     timAda = true;
                     team = response.body().getData();
                     etNamaTim.setText(team.getNama());
+                    etManager.setText(session.getUserName());
+                    etLapang.setText(team.getLapang().getNama());
+
+                    etNamaTim.setEnabled(false);
+                    etManager.setEnabled(false);
+
                     etTitle.setVisibility(View.VISIBLE);
-                    etTitle.setText("Edit Tim");
+                    etTitle.setText("My Tim");
                     btnJadwal.setVisibility(View.VISIBLE);
                     btnPemain.setVisibility(View.VISIBLE);
-                    btnSave.setText("Edit Tim");
+                    etLapang.setVisibility(View.VISIBLE);
+                    spLapangan.setVisibility(View.GONE);
+                    btnSave.setVisibility(View.GONE);
+
 //                    etPhone.setText(team.getNama());
                 } else if (response.code() == 404) {
+                    etLapang.setVisibility(View.GONE);
                     timAda = false;
                     etTitle.setVisibility(View.VISIBLE);
                     etTitle.setText("Buat Tim");
                     btnSave.setText("Buat Tim");
+                    btnSave.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -216,7 +230,7 @@ public class MyTeamActivity extends AppCompatActivity {
     void postTim() {
         teamPost.setNama(etNamaTim.getText().toString());
         teamPost.setIdLapang(dataItemLapangans.get(spLapangan.getSelectedItemPosition()).getId());
-        teamPost.setIdUser(2);
+        teamPost.setIdUser(session.getID());
 
         futsalApi.postTeam(teamPost).enqueue(new Callback<TeamDetailResponse>() {
             @Override

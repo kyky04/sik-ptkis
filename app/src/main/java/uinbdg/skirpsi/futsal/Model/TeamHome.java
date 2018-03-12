@@ -27,6 +27,17 @@ public class TeamHome{
 	@SerializedName("id_lapang")
 	private int idLapang;
 
+	@SerializedName("lapang")
+	private Lapang lapang;
+
+	public Lapang getLapang() {
+		return lapang;
+	}
+
+	public void setLapang(Lapang lapang) {
+		this.lapang = lapang;
+	}
+
 	public void setNama(String nama){
 		this.nama = nama;
 	}

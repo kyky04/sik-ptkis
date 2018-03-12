@@ -12,7 +12,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import uinbdg.skirpsi.futsal.Model.DataItemTeam;
+import uinbdg.skirpsi.futsal.Model.DataItem;
 import uinbdg.skirpsi.futsal.R;
 
 /**
@@ -21,7 +21,10 @@ import uinbdg.skirpsi.futsal.R;
 
 public class AdapterPertandingan extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    List<DataItemTeam> dataItemTeamList;
+    List<DataItem> dataItemTeamList;
+
+    @BindView(R.id.lay)
+    LinearLayout lay;
 
     private OnLoadMoreListener onLoadMoreListener;
 
@@ -40,17 +43,23 @@ public class AdapterPertandingan extends RecyclerView.Adapter<RecyclerView.ViewH
         this.ctx = ctx;
     }
 
-    public AdapterPertandingan(Context ctx, List<DataItemTeam> dataItemTeamList) {
+    public AdapterPertandingan(Context ctx, List<DataItem> dataItemTeamList) {
         this.dataItemTeamList = dataItemTeamList;
         this.ctx = ctx;
     }
 
 
     public class OriginalViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.tv_nama_tim)
-        TextView tvNamaTim;
+        @BindView(R.id.tv_name_home)
+        TextView tvNameHome;
+        @BindView(R.id.tv_name_away)
+        TextView tvNameAway;
         @BindView(R.id.tv_base_home)
         TextView tvBaseHome;
+        @BindView(R.id.tv_jadwal)
+        TextView tvJadwal;
+        @BindView(R.id.tv_status)
+        TextView tvStatus;
         @BindView(R.id.lay)
         LinearLayout lay;
 
@@ -64,7 +73,7 @@ public class AdapterPertandingan extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder vh;
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_tim, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pertandingan, parent, false);
         vh = new OriginalViewHolder(v);
         return vh;
     }
@@ -74,8 +83,12 @@ public class AdapterPertandingan extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof OriginalViewHolder) {
             OriginalViewHolder view = (OriginalViewHolder) holder;
-            view.tvNamaTim.setText(dataItemTeamList.get(position).getNama());
-            view.tvBaseHome.setText(dataItemTeamList.get(position).getLapang().getNama());
+
+            view.tvNameHome.setText(dataItemTeamList.get(position).getTeamHome().getNama());
+            view.tvNameAway.setText(dataItemTeamList.get(position).getTeamAway().getNama());
+            view.tvBaseHome.setText(dataItemTeamList.get(position).getTeamAway().getLapang().getNama());
+            view.tvStatus.setText(dataItemTeamList.get(position).getStatus());
+
             view.lay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

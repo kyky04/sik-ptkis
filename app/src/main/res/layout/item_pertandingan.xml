@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:clickable="true"
-    >
+    android:orientation="vertical">
 
 
     <android.support.v4.widget.NestedScrollView
@@ -34,56 +33,76 @@
 
                 <LinearLayout
                     android:id="@+id/lay"
-                    android:background="?attr/selectableItemBackground"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:padding="@dimen/spacing_medium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
                         android:gravity="center_vertical"
-                        android:minHeight="?attr/actionBarSize"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_medium">
 
-                        <View
-                            android:layout_width="@dimen/spacing_large"
-                            android:layout_height="wrap_content" />
 
                         <LinearLayout
-                            android:gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:gravity="center"
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tv_name_home"
                                 fontPath="fonts/montserrat_medium.ttf"
-                                android:id="@+id/tv_nama_tim"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="VAMOS MATARAM"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textColor="@color/colorPrimary" />
+                                android:textColor="@color/blue_500" />
 
                             <TextView
-                                android:id="@+id/tv_base_home"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="ZONE 73, BANDUNG"
-                                />
+                                android:text="VS" />
+
+
+                            <TextView
+                                android:id="@+id/tv_name_away"
+                                fontPath="fonts/montserrat_medium.ttf"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="VAMOS MATARAM"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:textColor="@color/red_500" />
+
+                            <TextView
+                                android:layout_marginTop="@dimen/spacing_medium"
+                                android:id="@+id/tv_base_home"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ZONE 73, BANDUNG" />
+
+                            <TextView
+                                android:visibility="gone"
+                                android:id="@+id/tv_jadwal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="20:20:20" />
+
+                            <TextView
+                                android:id="@+id/tv_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorPrimary"
+                                android:padding="@dimen/spacing_medium"
+                                android:text="Bertanding"
+                                android:textColor="@color/white" />
 
                         </LinearLayout>
 
-                        <ImageButton
-                            android:id="@+id/bt_toggle_text"
-                            android:layout_width="?attr/actionBarSize"
-                            android:layout_height="?attr/actionBarSize"
-                            android:background="?attr/selectableItemBackgroundBorderless"
-                            android:tint="@color/grey_80"
-                            app:srcCompat="@drawable/ic_action_arrow_right" />
 
                     </LinearLayout>
 

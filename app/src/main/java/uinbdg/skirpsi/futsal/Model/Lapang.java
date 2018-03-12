@@ -12,7 +12,7 @@ public class Lapang{
 	private String updatedAt;
 
 	@SerializedName("latitude")
-	private int latitude;
+	private double latitude;
 
 	@SerializedName("created_at")
 	private String createdAt;
@@ -24,7 +24,7 @@ public class Lapang{
 	private Object deletedAt;
 
 	@SerializedName("longitude")
-	private int longitude;
+	private double longitude;
 
 	public void setNama(String nama){
 		this.nama = nama;
@@ -42,11 +42,11 @@ public class Lapang{
 		return updatedAt;
 	}
 
-	public void setLatitude(int latitude){
+	public void setLatitude(double latitude){
 		this.latitude = latitude;
 	}
 
-	public int getLatitude(){
+	public double getLatitude(){
 		return latitude;
 	}
 
@@ -74,11 +74,11 @@ public class Lapang{
 		return deletedAt;
 	}
 
-	public void setLongitude(int longitude){
+	public void setLongitude(double longitude){
 		this.longitude = longitude;
 	}
 
-	public int getLongitude(){
+	public double getLongitude(){
 		return longitude;
 	}
 

@@ -28,7 +28,7 @@ public class EditProfilActivity extends AppCompatActivity {
 
     @BindView(R.id.et_alamat)
     EditText etNoPeserta;
-    @BindView(R.id.et_date)
+    @BindView(R.id.et_manager)
     EditText etDate;
     @BindView(R.id.et_et_email)
     EditText etEtEmail;
@@ -68,12 +68,12 @@ public class EditProfilActivity extends AppCompatActivity {
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
     }
 
-    @OnClick({R.id.et_alamat, R.id.et_date, R.id.et_et_email, R.id.et_phone, R.id.et_password, R.id.et_konfir_password, R.id.btn_daftar})
+    @OnClick({R.id.et_alamat, R.id.et_manager, R.id.et_et_email, R.id.et_phone, R.id.et_password, R.id.et_konfir_password, R.id.btn_daftar})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.et_alamat:
                 break;
-            case R.id.et_date:
+            case R.id.et_manager:
                 datePicker.show();
                 break;
             case R.id.et_et_email:

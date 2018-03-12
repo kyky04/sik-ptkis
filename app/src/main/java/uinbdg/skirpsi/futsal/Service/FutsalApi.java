@@ -2,6 +2,8 @@ package uinbdg.skirpsi.futsal.Service;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
@@ -9,6 +11,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import uinbdg.skirpsi.futsal.Model.AccessTokenRequest;
 import uinbdg.skirpsi.futsal.Model.AccessTokenResponse;
+import uinbdg.skirpsi.futsal.Model.DataItem;
 import uinbdg.skirpsi.futsal.Model.DataItemPemain;
 import uinbdg.skirpsi.futsal.Model.DataItemTeam;
 import uinbdg.skirpsi.futsal.Model.JadwalResponse;
@@ -16,6 +19,7 @@ import uinbdg.skirpsi.futsal.Model.KompetisiResponse;
 import uinbdg.skirpsi.futsal.Model.LapanganResponse;
 import uinbdg.skirpsi.futsal.Model.PemainDetailResponse;
 import uinbdg.skirpsi.futsal.Model.PemainResponse;
+import uinbdg.skirpsi.futsal.Model.PertandinganResponse;
 import uinbdg.skirpsi.futsal.Model.TeamDetailResponse;
 import uinbdg.skirpsi.futsal.Model.TeamResponse;
 import uinbdg.skirpsi.futsal.Model.UserResponse;
@@ -62,11 +66,16 @@ public interface FutsalApi {
     @POST("api/team")
     Call<TeamDetailResponse> postTeam(@Body DataItemTeam team);
 
+    @POST("api/pertandingan")
+    Call<DataItem> postPertandingan(@Body DataItem pertandingan);
+
+
     @POST("api/pemain")
     Call<PemainDetailResponse> postPemain(@Body DataItemPemain pemain);
 
     @PATCH("api/pemain/{id}")
     Call<PemainDetailResponse> putPemain(@Path("id") int id, @Body DataItemPemain pemain);
 
-
+    @GET("api/versus/{id}")
+    Call<PertandinganResponse> getPertandingan(@Path("id") int id);
 }
