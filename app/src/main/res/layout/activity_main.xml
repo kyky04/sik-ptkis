@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uinbdg.skirpsi.futsal.Activities.MainActivity">
+    tools:context="uinbdg.SIK.ptkis.Activities.MainActivity">
 
 
     <LinearLayout
@@ -12,56 +12,22 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.design.widget.AppBarLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/grey_200">
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:padding="@dimen/spacing_medium"
-                android:background="@color/grey_200"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
-                <LinearLayout
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:padding="@dimen/spacing_small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_launcher"/>
-                    <TextView
-                        fontPath="fonts/montserrat_bold.ttf"
-                        android:textStyle="bold"
-                        android:textSize="18dp"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/app_name_uppercase"/>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.Toolbar>
-
-            <TextView
-                android:textColor="@color/colorPrimary"
-                android:gravity="center"
-                android:padding="@dimen/spacing_medium"
-                fontPath="fonts/montserrat_medium.ttf"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Selamat Datang, User"/>
-
-        </android.support.design.widget.AppBarLayout>
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/spacing_medium"
+            app:title="SIK PTKIS"
+            app:titleTextColor="@color/white">
 
 
+        </android.support.v7.widget.Toolbar>
 
         <LinearLayout
-            android:layout_marginTop="@dimen/spacing_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
             android:orientation="horizontal"
             android:paddingBottom="@dimen/spacing_very_small"
             android:paddingLeft="@dimen/spacing_small"
@@ -78,7 +44,7 @@
                 app:cardElevation="2dp">
 
                 <RelativeLayout
-                    android:id="@+id/btn_lapangan"
+                    android:id="@+id/btn_univ"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackground"
@@ -89,7 +55,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:padding="@dimen/spacing_large"
-                        android:src="@drawable/img_lapang" />
+                        android:tint="@color/blue_500"
+                        android:src="@drawable/ic_account_balance_black_24dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -104,7 +71,7 @@
                             fontPath="fonts/montserrat_medium.ttf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Lapangan" />
+                            android:text="UNIVERSITAS" />
                     </LinearLayout>
 
                 </RelativeLayout>
@@ -119,18 +86,19 @@
                 app:cardElevation="2dp">
 
                 <RelativeLayout
-                    android:id="@+id/btn_tim"
+                    android:id="@+id/btn_beasiswa"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackground"
                     android:orientation="vertical">
 
                     <ImageView
+                        android:tint="@color/red_500"
                         android:id="@+id/img_peserta"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:padding="@dimen/spacing_large"
-                        android:src="@drawable/img_team" />
+                        android:src="@drawable/ic_view_list_black_24dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -145,59 +113,15 @@
                             fontPath="fonts/montserrat_medium.ttf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Tim" />
+                            android:text="DAFTAR BEASISWA" />
 
                     </LinearLayout>
 
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_small"
-                android:layout_weight="1"
-                app:cardCornerRadius="3dp"
-                app:cardElevation="2dp">
-
-                <RelativeLayout
-                    android:id="@+id/btn_jadwal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/img_benefit"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:padding="@dimen/spacing_large"
-                        android:src="@drawable/img_jadwal" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_below="@+id/img_benefit"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/spacing_medium">
-
-                        <TextView
-                            fontPath="fonts/montserrat_medium.ttf"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Jadwal" />
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-
 
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -209,90 +133,6 @@
             android:paddingRight="@dimen/spacing_small"
             android:paddingTop="@dimen/spacing_very_small"
             android:visibility="visible">
-
-            <android.support.v7.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_small"
-                android:layout_weight="1"
-                app:cardCornerRadius="3dp"
-                app:cardElevation="2dp">
-
-                <RelativeLayout
-                    android:id="@+id/btn_myteam"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/img_claim"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:padding="@dimen/spacing_large"
-                        android:src="@drawable/img_my_tem" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_below="@+id/img_claim"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/spacing_medium">
-
-                        <TextView
-                            fontPath="fonts/montserrat_medium.ttf"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="My Tim" />
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_small"
-                android:layout_weight="1"
-                app:cardCornerRadius="3dp"
-                app:cardElevation="2dp">
-
-                <RelativeLayout
-                    android:id="@+id/btn_kompetisi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/img_buku_saku"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:padding="@dimen/spacing_large"
-                        android:src="@drawable/img_kompetisi" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_below="@+id/img_buku_saku"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/spacing_medium">
-
-                        <TextView
-                            fontPath="fonts/montserrat_medium.ttf"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Kompetisi" />
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
                 android:layout_width="0dp"
@@ -310,17 +150,20 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/img_kontak_kami"
+                        android:tint="@color/yellow_500"
+                        android:id="@+id/img_claim"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
                         android:padding="@dimen/spacing_large"
-                        android:src="@drawable/ic_home_kontak" />
+                        android:src="@drawable/ic_account_circle_black_24dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
-                        android:layout_below="@+id/img_kontak_kami"
+                        android:layout_below="@+id/img_claim"
                         android:gravity="center"
                         android:orientation="horizontal"
                         android:padding="@dimen/spacing_medium">
@@ -329,13 +172,55 @@
                             fontPath="fonts/montserrat_medium.ttf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Notifikasi" />
+                            android:text="TENTANG" />
 
                     </LinearLayout>
 
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
+            <android.support.v7.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_small"
+                android:layout_weight="1"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:id="@+id/btn_exit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:tint="@color/amber_600"
+                        android:id="@+id/img_buku_saku"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:padding="@dimen/spacing_large"
+                        android:src="@drawable/ic_exit_to_app_black_24dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_below="@+id/img_buku_saku"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_medium">
+
+                        <TextView
+                            fontPath="fonts/montserrat_medium.ttf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="KELUAR" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
 
 
         </LinearLayout>
