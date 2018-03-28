@@ -1,6 +1,8 @@
 package uinbdg.SIK.ptkis.Model.Response;
 
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 
@@ -50,6 +52,73 @@ public class DataItemPendaftar {
 
 	@SerializedName("kendaraan_pribadi")
 	private String kendaraanPribadi;
+
+
+	private Integer bobotIpk;
+	private Integer prestasiNonAkademis;
+	private Integer jumlahTanggungan;
+	private Integer penghasilan;
+	private Integer kendaraan;
+
+	private double vectorS;
+	private double vectorV;
+
+	public double getVectorV() {
+		return vectorV;
+	}
+
+	public void setVectorV(double vectorV) {
+		this.vectorV = vectorV;
+	}
+
+	public double getVectorS() {
+		return vectorS;
+	}
+
+	public void setVectorS(double vectorS) {
+		this.vectorS = vectorS;
+	}
+
+
+	public Integer getBobotIpk() {
+		return bobotIpk;
+	}
+
+	public void setBobotIpk(Integer bobotIpk) {
+		this.bobotIpk = bobotIpk;
+	}
+
+	public Integer getPrestasiNonAkademis() {
+		return prestasiNonAkademis;
+	}
+
+	public void setPrestasiNonAkademis(Integer prestasiNonAkademis) {
+		this.prestasiNonAkademis = prestasiNonAkademis;
+	}
+
+	public Integer getJumlahTanggungan() {
+		return jumlahTanggungan;
+	}
+
+	public void setJumlahTanggungan(Integer jumlahTanggungan) {
+		this.jumlahTanggungan = jumlahTanggungan;
+	}
+
+	public Integer getPenghasilan() {
+		return penghasilan;
+	}
+
+	public void setPenghasilan(Integer penghasilan) {
+		this.penghasilan = penghasilan;
+	}
+
+	public Integer getKendaraan() {
+		return kendaraan;
+	}
+
+	public void setKendaraan(Integer kendaraan) {
+		this.kendaraan = kendaraan;
+	}
 
 	public void setJurusanMahasiswa(String jurusanMahasiswa){
 		this.jurusanMahasiswa = jurusanMahasiswa;
@@ -192,4 +261,6 @@ public class DataItemPendaftar {
 			",kendaraan_pribadi = '" + kendaraanPribadi + '\'' + 
 			"}";
 		}
+
+
 }

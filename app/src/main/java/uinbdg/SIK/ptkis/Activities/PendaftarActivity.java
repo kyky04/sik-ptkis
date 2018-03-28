@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ public class PendaftarActivity extends AppCompatActivity {
     @BindView(R.id.btn_add_beasiswa)
     FloatingActionButton btnAddBeasiswa;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,10 +76,22 @@ public class PendaftarActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_pendaftar, menu);
+        if(!session.getFullname().equals("kemahasiswaan")){
+            menu.findItem(R.id.menu_pendaftar).setVisible(false);
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 supportFinishAfterTransition();
+                break;
+            case R.id.menu_pendaftar:
+                startActivity(new Intent(this,RankingPendaftarActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -103,8 +117,8 @@ public class PendaftarActivity extends AppCompatActivity {
 //                        @Override
 //                        public void onItemClick(int position) {
 //                            Intent i = new Intent(BeritaUniversitasActivity.this, FakultasActivity.class);
-//                            i.putExtra("id_univ", dataItemUniversitas.get(position).getId());
-//                            i.putExtra("nama_univ", dataItemUniversitas.get(position).getNama());
+//                            i.putExtra("id_univ", dataItemPendaftarList.get(position).getId());
+//                            i.putExtra("nama_univ", dataItemPendaftarList.get(position).getNama());
 //                            startActivity(i);
 //                        }
 //                    });
@@ -121,6 +135,6 @@ public class PendaftarActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_add_beasiswa)
     public void onViewClicked() {
-        startActivity(new Intent(this,DaftarActivity.class));
+        startActivity(new Intent(this, DaftarActivity.class));
     }
 }

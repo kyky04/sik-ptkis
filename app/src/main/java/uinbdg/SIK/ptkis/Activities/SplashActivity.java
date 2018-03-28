@@ -46,7 +46,7 @@ public class SplashActivity extends AppCompatActivity {
 //                    finish();
 //                }
 
-                Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                Intent i = new Intent(SplashActivity.this, LoginActivity.class);
                 // Closing all the Activities
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 

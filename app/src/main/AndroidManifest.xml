@@ -34,6 +34,7 @@
         <activity android:name="uinbdg.SIK.ptkis.Activities.BeritaUniversitasActivity" />
         <activity android:name="uinbdg.SIK.ptkis.Activities.BeritaFakultasActivity" />
         <activity android:name="uinbdg.SIK.ptkis.Activities.PendaftarActivity" />
+        <activity android:name="uinbdg.SIK.ptkis.Activities.RankingPendaftarActivity" />
     </application>
 
 </manifest>

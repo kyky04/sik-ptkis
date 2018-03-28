@@ -98,8 +98,8 @@ public class BeritaUniversitasActivity extends AppCompatActivity {
 //                        @Override
 //                        public void onItemClick(int position) {
 //                            Intent i = new Intent(BeritaUniversitasActivity.this, FakultasActivity.class);
-//                            i.putExtra("id_univ", dataItemUniversitas.get(position).getId());
-//                            i.putExtra("nama_univ", dataItemUniversitas.get(position).getNama());
+//                            i.putExtra("id_univ", dataItemPendaftarList.get(position).getId());
+//                            i.putExtra("nama_univ", dataItemPendaftarList.get(position).getNama());
 //                            startActivity(i);
 //                        }
 //                    });
