@@ -12,7 +12,14 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import uinbdg.SIK.ptkis.Model.Response.LoginResponse;
 import uinbdg.SIK.ptkis.R;
+import uinbdg.SIK.ptkis.Service.ApiClient;
+import uinbdg.SIK.ptkis.Service.PTKISApi;
 import uinbdg.SIK.ptkis.Util.Session;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -42,12 +49,16 @@ public class LoginActivity extends AppCompatActivity {
     private void login() {
         if (etUsername.getText().toString().equals("kemahasiswaan") && etPassword.getText().toString().equals("admin123")) {
             session.setFullName("kemahasiswaan");
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            session.setIsLogin(true);
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            // Closing all the Activities
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-            // Add new Flag to start new Activity
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            // Add new Flag to start new Aktifitas
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            // Staring Login Aktifitas
+            startActivity(i);
         } else if (etUsername.getText().toString().equals("siswa") && etPassword.getText().toString().equals("siswa123")) {
             session.setFullName("siswa");
             Intent intent = new Intent(this, MainActivity.class);
@@ -60,6 +71,46 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Username atau password anda tidak sesuai", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    void loginn() {
+        openDialog();
+        Retrofit retrofit = ApiClient.newInstance();
+        PTKISApi service = retrofit.create(PTKISApi.class);
+        service.login(etUsername.getText().toString(), etPassword.getText().toString()).enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if (response.code() == 200) {
+                    try {
+                        session.setFullName(response.body().getData().getNama());
+                        session.setIsLogin(true);
+                        Toast.makeText(LoginActivity.this, response.body().getStatus(), Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                        // Closing all the Activities
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                        // Add new Flag to start new Aktifitas
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        // Staring Login Aktifitas
+                        startActivity(i);
+
+                    }catch (NullPointerException e){
+                        e.printStackTrace();
+                        closeDialog();
+                        Toast.makeText(LoginActivity.this, response.body().getStatus(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(LoginActivity.this, response.body().getStatus(), Toast.LENGTH_SHORT).show();
+                    closeDialog();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                closeDialog();
+            }
+        });
     }
 
     @Override

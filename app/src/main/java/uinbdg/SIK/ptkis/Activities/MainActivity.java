@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import uinbdg.SIK.ptkis.R;
 import uinbdg.SIK.ptkis.Util.CommonUtil;
+import uinbdg.SIK.ptkis.Util.Session;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.btn_exit)
     RelativeLayout btnExit;
 
+    Session session;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+
+        session = new Session(this);
 
     }
 
@@ -61,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_logout:
-
+                session.logoutUser();
                 break;
             case R.id.menu_exit:
                 CommonUtil.exit(this);

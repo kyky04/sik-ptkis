@@ -19,8 +19,9 @@ import uinbdg.SIK.ptkis.R;
  * Created by Comp on 2/11/2018.
  */
 
-public class AdapterPendaftar extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class AdapterBeasiswa extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     List<DataItemBeasiswa> listUniv;
+
 
 
     private OnLoadMoreListener onLoadMoreListener;
@@ -36,11 +37,11 @@ public class AdapterPendaftar extends RecyclerView.Adapter<RecyclerView.ViewHold
         this.mOnItemClickListener = mItemClickListener;
     }
 
-    public AdapterPendaftar(Context ctx) {
+    public AdapterBeasiswa(Context ctx) {
         this.ctx = ctx;
     }
 
-    public AdapterPendaftar(Context ctx, List<DataItemBeasiswa> itemUniversitas) {
+    public AdapterBeasiswa(Context ctx, List<DataItemBeasiswa> itemUniversitas) {
         this.listUniv = itemUniversitas;
         this.ctx = ctx;
     }
@@ -55,6 +56,8 @@ public class AdapterPendaftar extends RecyclerView.Adapter<RecyclerView.ViewHold
         TextView tvNoTelp;
         @BindView(R.id.lay)
         LinearLayout lay;
+        @BindView(R.id.tv_rank)
+        TextView tvRank;
 
         public OriginalViewHolder(View v) {
             super(v);
@@ -66,7 +69,7 @@ public class AdapterPendaftar extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder vh;
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_berita_pendaftar, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_beasiswa, parent, false);
         vh = new OriginalViewHolder(v);
         return vh;
     }
@@ -79,7 +82,7 @@ public class AdapterPendaftar extends RecyclerView.Adapter<RecyclerView.ViewHold
             view.tvKategori.setText(listUniv.get(position).getMahasiswa().getNama());
             view.tvAlamat.setText(listUniv.get(position).getMahasiswa().getAlamat());
             view.tvNoTelp.setText(listUniv.get(position).getMahasiswa().getNo_telp());
-//            view.tvNoTelp.setText(listUniv.get(position).getBobotPenghasilan());
+            view.tvRank.setText(String.valueOf("RANK : "+listUniv.get(position).getVectorV()));
 //            view.lay.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {

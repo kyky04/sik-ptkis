@@ -1,64 +1,71 @@
 package uinbdg.SIK.ptkis.Model.Response;
 
 
-import android.support.annotation.NonNull;
-
 import com.google.gson.annotations.SerializedName;
 
 
 public class DataItemPendaftar {
 
-	@SerializedName("jurusan_mahasiswa")
-	private String jurusanMahasiswa;
+	@SerializedName("id")
+	private Integer id;
 
-	@SerializedName("pendapatan_orangtua")
-	private String pendapatanOrangtua;
+	@SerializedName("nilai_un")
+	private String nilaiUn;
 
-	@SerializedName("nama_mahasiswa")
-	private String namaMahasiswa;
+	@SerializedName("bobotPenghasilan")
+	private Integer penghasilan;
 
-	@SerializedName("ipk")
-	private String ipk;
+	@SerializedName("tanggungan")
+	private Integer tanggungan;
 
-	@SerializedName("prestasi_akademik")
-	private String prestasiAkademik;
+	@SerializedName("prestasi")
+	private String prestasi;
+
+	@SerializedName("kriteria_rumah")
+	private String kriteriaRumah;
+
+	@SerializedName("kepimilikan_rumah")
+	private String kepimilikanRumah;
+
+	@SerializedName("isi_rumah")
+	private String isiRumah;
+
+	@SerializedName("mandi_cuci_kakus")
+	private String mandiCuciKakus;
+
+	@SerializedName("luas_tanah")
+	private Integer luasTanah;
+
+	@SerializedName("jarak_pusat_kota")
+	private Integer jarakPusatKota;
+
+	@SerializedName("sumber_air")
+	private String sumberAir;
 
 	@SerializedName("created_at")
 	private String createdAt;
 
-	@SerializedName("deleted_at")
-	private Object deletedAt;
-
-	@SerializedName("id_univ")
-	private int idUniv;
-
-	@SerializedName("alamat")
-	private String alamat;
-
-	@SerializedName("tanggungan_orangtua")
-	private String tanggunganOrangtua;
-
-	@SerializedName("nim")
-	private String nim;
-
 	@SerializedName("updated_at")
 	private String updatedAt;
 
-	@SerializedName("semester")
-	private String semester;
+	@SerializedName("deleted_at")
+	private Object deletedAt;
 
-	@SerializedName("id")
-	private int id;
-
-	@SerializedName("kendaraan_pribadi")
-	private String kendaraanPribadi;
+	@SerializedName("id_mahasiswa")
+	private Integer idMahasiswa;
 
 
-	private Integer bobotIpk;
-	private Integer prestasiNonAkademis;
+	private Integer bobotNilaiUn;
+	private Integer bobotPrestasi;
 	private Integer jumlahTanggungan;
-	private Integer penghasilan;
-	private Integer kendaraan;
+	private Integer bobotPenghasilan;
+	private Integer bobotKriteriaRumah;
+	private Integer bobotKepemilikanRumah;
+	private Integer bobotIsiRumah;
+	private Integer bobotMandiCuciKakus;
+	private Integer bobotLuasTanah;
+	private Integer bobotJarakPusatKota;
+	private Integer bobotSumberAir;
 
 	private double vectorS;
 	private double vectorV;
@@ -80,20 +87,20 @@ public class DataItemPendaftar {
 	}
 
 
-	public Integer getBobotIpk() {
-		return bobotIpk;
+	public Integer getBobotNilaiUn() {
+		return bobotNilaiUn;
 	}
 
-	public void setBobotIpk(Integer bobotIpk) {
-		this.bobotIpk = bobotIpk;
+	public void setBobotNilaiUn(Integer bobotNilaiUn) {
+		this.bobotNilaiUn = bobotNilaiUn;
 	}
 
-	public Integer getPrestasiNonAkademis() {
-		return prestasiNonAkademis;
+	public Integer getBobotPrestasi() {
+		return bobotPrestasi;
 	}
 
-	public void setPrestasiNonAkademis(Integer prestasiNonAkademis) {
-		this.prestasiNonAkademis = prestasiNonAkademis;
+	public void setBobotPrestasi(Integer bobotPrestasi) {
+		this.bobotPrestasi = bobotPrestasi;
 	}
 
 	public Integer getJumlahTanggungan() {
@@ -104,6 +111,30 @@ public class DataItemPendaftar {
 		this.jumlahTanggungan = jumlahTanggungan;
 	}
 
+	public Integer getBobotPenghasilan() {
+		return bobotPenghasilan;
+	}
+
+	public void setBobotPenghasilan(Integer bobotPenghasilan) {
+		this.bobotPenghasilan = bobotPenghasilan;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNilaiUn() {
+		return nilaiUn;
+	}
+
+	public void setNilaiUn(String nilaiUn) {
+		this.nilaiUn = nilaiUn;
+	}
+
 	public Integer getPenghasilan() {
 		return penghasilan;
 	}
@@ -112,155 +143,163 @@ public class DataItemPendaftar {
 		this.penghasilan = penghasilan;
 	}
 
-	public Integer getKendaraan() {
-		return kendaraan;
+	public Integer getTanggungan() {
+		return tanggungan;
 	}
 
-	public void setKendaraan(Integer kendaraan) {
-		this.kendaraan = kendaraan;
+	public void setTanggungan(Integer tanggungan) {
+		this.tanggungan = tanggungan;
 	}
 
-	public void setJurusanMahasiswa(String jurusanMahasiswa){
-		this.jurusanMahasiswa = jurusanMahasiswa;
+	public String getPrestasi() {
+		return prestasi;
 	}
 
-	public String getJurusanMahasiswa(){
-		return jurusanMahasiswa;
+	public void setPrestasi(String prestasi) {
+		this.prestasi = prestasi;
 	}
 
-	public void setPendapatanOrangtua(String pendapatanOrangtua){
-		this.pendapatanOrangtua = pendapatanOrangtua;
+	public String getKriteriaRumah() {
+		return kriteriaRumah;
 	}
 
-	public String getPendapatanOrangtua(){
-		return pendapatanOrangtua;
+	public void setKriteriaRumah(String kriteriaRumah) {
+		this.kriteriaRumah = kriteriaRumah;
 	}
 
-	public void setNamaMahasiswa(String namaMahasiswa){
-		this.namaMahasiswa = namaMahasiswa;
+	public String getKepimilikanRumah() {
+		return kepimilikanRumah;
 	}
 
-	public String getNamaMahasiswa(){
-		return namaMahasiswa;
+	public void setKepimilikanRumah(String kepimilikanRumah) {
+		this.kepimilikanRumah = kepimilikanRumah;
 	}
 
-	public void setIpk(String ipk){
-		this.ipk = ipk;
+	public String getIsiRumah() {
+		return isiRumah;
 	}
 
-	public String getIpk(){
-		return ipk;
+	public void setIsiRumah(String isiRumah) {
+		this.isiRumah = isiRumah;
 	}
 
-	public void setPrestasiAkademik(String prestasiAkademik){
-		this.prestasiAkademik = prestasiAkademik;
+	public String getMandiCuciKakus() {
+		return mandiCuciKakus;
 	}
 
-	public String getPrestasiAkademik(){
-		return prestasiAkademik;
+	public void setMandiCuciKakus(String mandiCuciKakus) {
+		this.mandiCuciKakus = mandiCuciKakus;
 	}
 
-	public void setCreatedAt(String createdAt){
-		this.createdAt = createdAt;
+	public Integer getLuasTanah() {
+		return luasTanah;
 	}
 
-	public String getCreatedAt(){
+	public void setLuasTanah(Integer luasTanah) {
+		this.luasTanah = luasTanah;
+	}
+
+	public Integer getJarakPusatKota() {
+		return jarakPusatKota;
+	}
+
+	public void setJarakPusatKota(Integer jarakPusatKota) {
+		this.jarakPusatKota = jarakPusatKota;
+	}
+
+	public String getSumberAir() {
+		return sumberAir;
+	}
+
+	public void setSumberAir(String sumberAir) {
+		this.sumberAir = sumberAir;
+	}
+
+	public String getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setDeletedAt(Object deletedAt){
-		this.deletedAt = deletedAt;
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
 
-	public Object getDeletedAt(){
-		return deletedAt;
-	}
-
-	public void setIdUniv(int idUniv){
-		this.idUniv = idUniv;
-	}
-
-	public int getIdUniv(){
-		return idUniv;
-	}
-
-	public void setAlamat(String alamat){
-		this.alamat = alamat;
-	}
-
-	public String getAlamat(){
-		return alamat;
-	}
-
-	public void setTanggunganOrangtua(String tanggunganOrangtua){
-		this.tanggunganOrangtua = tanggunganOrangtua;
-	}
-
-	public String getTanggunganOrangtua(){
-		return tanggunganOrangtua;
-	}
-
-	public void setNim(String nim){
-		this.nim = nim;
-	}
-
-	public String getNim(){
-		return nim;
-	}
-
-	public void setUpdatedAt(String updatedAt){
-		this.updatedAt = updatedAt;
-	}
-
-	public String getUpdatedAt(){
+	public String getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setSemester(String semester){
-		this.semester = semester;
+	public void setUpdatedAt(String updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 
-	public String getSemester(){
-		return semester;
+	public Object getDeletedAt() {
+		return deletedAt;
 	}
 
-	public void setId(int id){
-		this.id = id;
+	public void setDeletedAt(Object deletedAt) {
+		this.deletedAt = deletedAt;
 	}
 
-	public int getId(){
-		return id;
+	public Integer getIdMahasiswa() {
+		return idMahasiswa;
 	}
 
-	public void setKendaraanPribadi(String kendaraanPribadi){
-		this.kendaraanPribadi = kendaraanPribadi;
+	public void setIdMahasiswa(Integer idMahasiswa) {
+		this.idMahasiswa = idMahasiswa;
 	}
 
-	public String getKendaraanPribadi(){
-		return kendaraanPribadi;
+	public Integer getBobotKriteriaRumah() {
+		return bobotKriteriaRumah;
 	}
 
-	@Override
- 	public String toString(){
-		return 
-			"DataItemPendaftar{" +
-			"jurusan_mahasiswa = '" + jurusanMahasiswa + '\'' + 
-			",pendapatan_orangtua = '" + pendapatanOrangtua + '\'' + 
-			",nama_mahasiswa = '" + namaMahasiswa + '\'' + 
-			",ipk = '" + ipk + '\'' + 
-			",prestasi_akademik = '" + prestasiAkademik + '\'' + 
-			",created_at = '" + createdAt + '\'' + 
-			",deleted_at = '" + deletedAt + '\'' + 
-			",id_univ = '" + idUniv + '\'' + 
-			",alamat = '" + alamat + '\'' + 
-			",tanggungan_orangtua = '" + tanggunganOrangtua + '\'' + 
-			",nim = '" + nim + '\'' + 
-			",updated_at = '" + updatedAt + '\'' + 
-			",semester = '" + semester + '\'' + 
-			",id = '" + id + '\'' + 
-			",kendaraan_pribadi = '" + kendaraanPribadi + '\'' + 
-			"}";
-		}
+	public void setBobotKriteriaRumah(Integer bobotKriteriaRumah) {
+		this.bobotKriteriaRumah = bobotKriteriaRumah;
+	}
 
+	public Integer getBobotKepemilikanRumah() {
+		return bobotKepemilikanRumah;
+	}
 
+	public void setBobotKepemilikanRumah(Integer bobotKepemilikanRumah) {
+		this.bobotKepemilikanRumah = bobotKepemilikanRumah;
+	}
+
+	public Integer getBobotIsiRumah() {
+		return bobotIsiRumah;
+	}
+
+	public void setBobotIsiRumah(Integer bobotIsiRumah) {
+		this.bobotIsiRumah = bobotIsiRumah;
+	}
+
+	public Integer getBobotMandiCuciKakus() {
+		return bobotMandiCuciKakus;
+	}
+
+	public void setBobotMandiCuciKakus(Integer bobotMandiCuciKakus) {
+		this.bobotMandiCuciKakus = bobotMandiCuciKakus;
+	}
+
+	public Integer getBobotLuasTanah() {
+		return bobotLuasTanah;
+	}
+
+	public void setBobotLuasTanah(Integer bobotLuasTanah) {
+		this.bobotLuasTanah = bobotLuasTanah;
+	}
+
+	public Integer getBobotJarakPusatKota() {
+		return bobotJarakPusatKota;
+	}
+
+	public void setBobotJarakPusatKota(Integer bobotJarakPusatKota) {
+		this.bobotJarakPusatKota = bobotJarakPusatKota;
+	}
+
+	public Integer getBobotSumberAir() {
+		return bobotSumberAir;
+	}
+
+	public void setBobotSumberAir(Integer bobotSumberAir) {
+		this.bobotSumberAir = bobotSumberAir;
+	}
 }

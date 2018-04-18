@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 public class PendaftarResponse{
 
 	@SerializedName("data")
-	private List<DataItemPendaftar> data;
+	private List<DataItemBeasiswa> data;
 
 	@SerializedName("success")
 	private boolean success;
@@ -16,11 +16,11 @@ public class PendaftarResponse{
 	@SerializedName("message")
 	private String message;
 
-	public void setData(List<DataItemPendaftar> data){
+	public void setData(List<DataItemBeasiswa> data){
 		this.data = data;
 	}
 
-	public List<DataItemPendaftar> getData(){
+	public List<DataItemBeasiswa> getData(){
 		return data;
 	}
 
@@ -44,7 +44,7 @@ public class PendaftarResponse{
  	public String toString(){
 		return 
 			"PendaftarResponse{" + 
-			"data = '" + data + '\'' + 
+			"data = '" + data + '\'' +
 			",success = '" + success + '\'' + 
 			",message = '" + message + '\'' + 
 			"}";

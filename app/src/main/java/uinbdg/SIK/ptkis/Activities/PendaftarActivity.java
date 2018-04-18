@@ -22,6 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import uinbdg.SIK.ptkis.Adapter.AdapterPendaftar;
+import uinbdg.SIK.ptkis.Model.Response.DataItemBeasiswa;
 import uinbdg.SIK.ptkis.Model.Response.DataItemPendaftar;
 import uinbdg.SIK.ptkis.Model.Response.PendaftarResponse;
 import uinbdg.SIK.ptkis.R;
@@ -36,7 +37,7 @@ public class PendaftarActivity extends AppCompatActivity {
     @BindView(R.id.recycler_view_tim)
     RecyclerView recyclerViewUniversitas;
 
-    List<DataItemPendaftar> dataItemUniversitas;
+    List<DataItemBeasiswa> dataItemUniversitas;
 
     AdapterPendaftar adapterUniversitas;
 
